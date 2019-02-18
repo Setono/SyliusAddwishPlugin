@@ -1,0 +1,27 @@
+{# @see https://support.addwish.com/hc/en-us/articles/211907469-How-to-supply-product-data #}
+{# @var \Sylius\Component\Core\Model\ProductInterface product #}
+{# @var string filter #}
+
+{% if product.imagesByType('thumbnail') is not empty %}
+    {% set imgurl = product.imagesByType('thumbnail').first.path|imagine_filter(filter|default('sylius_shop_product_thumbnail')) %}
+{% elseif product.images.first %}
+    {% set imgurl = product.images.first.path|imagine_filter(filter|default('sylius_shop_product_thumbnail')) %}
+{% else %}
+    {% set imgurl = '//placehold.it/200x200' %}
+{% endif %}
+
+{% set variant = product|sylius_resolve_variant %}
+
+<span class="addwish-product-info" style="display:none"
+      data-title="{{ product.name }}"
+      data-imgurl="{{ absolute_url(imgurl) }}"
+      data-price="{{ variant|sylius_calculate_price({'channel': sylius.channel})|setono_sylius_addwish_format_money }}"
+      data-productnumber="{{ product|setono_sylius_addwish_product_code }}"
+      data-url="{{ absolute_url(path('sylius_shop_product_show', {'slug': product.slug })) }}"
+      data-currency="{{ sylius.channel.baseCurrency.code }}"
+      {#data-brand="..."#}
+      {#data-category="..."#}
+      data-instock="true"
+      {#data-previousprice="..."#}
+      {#data-gender="..."#}
+></span>

@@ -1,0 +1,16 @@
+{# @see https://support.addwish.com/hc/en-us/articles/212501465-How-to-supply-conversion-data #}
+{# @var \Sylius\Component\Core\Model\OrderInterface order #}
+
+<span class="addwish-conversion" style="display:none;"
+	data-ordernumber="{{ order.number }}"
+	data-total="{{ order.total|setono_sylius_addwish_format_money }}"
+	data-email="{{ order.customer.emailCanonical }}"
+>
+	{% for orderItem in order.items %}
+		<span class="addwish-product"
+			  data-url="{{ absolute_url(path('sylius_shop_product_show', {'slug': orderItem.product.slug })) }}"
+			  data-productnumber="{{ orderItem|setono_sylius_addwish_item_code }}"
+			  data-quantity="{{ orderItem.quantity }}"
+		></span>
+	{% endfor %}
+</span>

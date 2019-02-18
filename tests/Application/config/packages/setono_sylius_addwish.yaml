@@ -1,0 +1,2 @@
+setono_sylius_addwish:
+    partner_id: "%env(ADDWISH_PARTNER_ID)%"
