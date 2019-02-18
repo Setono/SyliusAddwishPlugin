@@ -10,6 +10,7 @@ interface ProductCodeResolverInterface
 {
     /**
      * @param ProductInterface $product
+     *
      * @return string
      */
     public function resolve(ProductInterface $product): string;

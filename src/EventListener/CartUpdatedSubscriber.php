@@ -9,8 +9,8 @@ use Setono\TagBagBundle\Factory\TwigTagFactory;
 use Setono\TagBagBundle\HttpFoundation\Session\Tag\TagBagInterface;
 use Setono\TagBagBundle\Tag\TagInterface;
 use Sylius\Component\Core\Model\OrderInterface;
-use Sylius\Component\Order\Model\OrderInterface as BaseOrderInterface;
 use Sylius\Component\Order\Context\CartContextInterface;
+use Sylius\Component\Order\Model\OrderInterface as BaseOrderInterface;
 
 final class CartUpdatedSubscriber extends TagSubscriber
 {

@@ -1,8 +1,8 @@
 {
     "name": "setono/sylius-addwish-plugin",
     "type": "sylius-plugin",
-    "keywords": ["sylius", "sylius-plugin", "setono-tagbag", "addwish"],
-    "description": "Plugin that integrates Addwish",
+    "keywords": ["sylius", "sylius-plugin", "setono", "addwish"],
+    "description": "Sylius plugin that integrates Addwish",
     "license": "MIT",
     "require": {
         "php": "^7.2",
@@ -15,6 +15,7 @@
         "setono/sylius-tag-bag-plugin": "Use it if you don't want to override shop's layout.html.twig"
     },
     "require-dev": {
+        "phpspec/phpspec": "^5.0",
         "phpstan/phpstan-doctrine": "^0.10",
         "phpstan/phpstan-shim": "^0.10",
         "phpstan/phpstan-symfony": "^0.10",
@@ -78,11 +79,15 @@
             "@analyse"
         ],
         "check-style": "./vendor/bin/ecs check src",
-        "fix-style": "./vendor/bin/ecs check src",
+        "fix-style": "./vendor/bin/ecs check src --fix",
         "analyse": [
             "@ensure-test-container-exists",
             "./vendor/bin/phpstan analyse -c phpstan.neon -l max src"
         ],
+        "test": [
+            "@phpspec"
+        ],
+        "phpspec": "./vendor/bin/phpspec run",
         "ensure-env-copied": "([[ ${SYMFONY_ENV:-'dev'} == 'dev' ]] && composer ensure-env-dev-copied) || ([[ ${SYMFONY_ENV:-'dev'} == 'test' ]] && composer ensure-env-test-copied) || echo 'Unknown environment ${SYMFONY_ENV}'",
         "ensure-env-test-copied": "(cd tests/Application && ([[ -f .env.test.local ]] || cp .env.test .env.test.local))",
         "ensure-env-dev-copied":  "(cd tests/Application && ([[ -f .env.dev.local ]] || cp .env  .env.dev.local))",
