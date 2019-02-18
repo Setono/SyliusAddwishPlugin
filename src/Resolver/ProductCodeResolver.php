@@ -29,10 +29,6 @@ final class ProductCodeResolver implements ProductCodeResolverInterface
             return (string) $variant->getCode();
         }
 
-        if (null === $product->getCode()) {
-            return '';
-        }
-
         return (string) $product->getCode();
     }
 }
