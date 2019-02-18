@@ -15,6 +15,8 @@ via `setono/sylius-tag-bag-plugin`
 Open a command console, enter your project directory and execute the following command to download the latest stable version of this plugin:
 
 ```bash
+# Omit setono/sylius-tag-bag-plugin if you want to
+# override layout.html.twig as described at https://github.com/Setono/TagBagBundle#usage
 $ composer require setono/sylius-addwish-plugin setono/sylius-tag-bag-plugin
 ```
 
@@ -30,7 +32,10 @@ in the `config/bundles.php` file of your project:
 # config/bundles.php
 return [
     Setono\TagBagBundle\SetonoTagBagBundle::class => ['all' => true],
+
+    // Use this bundle or override layout.html.twig as described at https://github.com/Setono/TagBagBundle#usage
     Setono\SyliusTagBagPlugin\SetonoSyliusTagBagPlugin::class => ['all' => true],
+
     Setono\SyliusAddwishPlugin\SetonoSyliusAddwishPlugin::class => ['all' => true],
 ];
 ```

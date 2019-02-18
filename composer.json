@@ -1,7 +1,7 @@
 {
     "name": "setono/sylius-addwish-plugin",
     "type": "sylius-plugin",
-    "keywords": ["sylius", "sylius-plugin", "addwish"],
+    "keywords": ["sylius", "sylius-plugin", "setono-tagbag", "addwish"],
     "description": "Plugin that integrates Addwish",
     "license": "MIT",
     "repositories": [{
