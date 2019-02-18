@@ -33,6 +33,11 @@ final class ProductVisitedSubscriber extends TagSubscriber
         ];
     }
 
+    /**
+     * @param ResourceControllerEvent $event
+     *
+     * @throws \Twig\Error\Error
+     */
     public function addScript(ResourceControllerEvent $event): void
     {
         $product = $event->getSubject();

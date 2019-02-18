@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAddwishPlugin\EventListener;
 
-use Setono\SyliusAddwishPlugin\Resolver\ItemCodeResolverInterface;
 use Setono\TagBagBundle\Factory\TwigTagFactory;
 use Setono\TagBagBundle\HttpFoundation\Session\Tag\TagBagInterface;
 use Setono\TagBagBundle\Tag\TagInterface;
@@ -24,27 +23,12 @@ final class CartUpdatedSubscriber extends TagSubscriber
      */
     private $cartContext;
 
-    /**
-     * @var ItemCodeResolverInterface
-     */
-    private $itemCodeResolver;
-
-    /**
-     * @param TagBagInterface $tagBag
-     * @param TwigTagFactory $twigTagFactory
-     * @param ItemCodeResolverInterface $itemCodeResolver
-     */
-    public function __construct(
-        TagBagInterface $tagBag,
-        TwigTagFactory $twigTagFactory,
-        CartContextInterface $cartContext,
-        ItemCodeResolverInterface $itemCodeResolver
-    ) {
+    public function __construct(TagBagInterface $tagBag, TwigTagFactory $twigTagFactory, CartContextInterface $cartContext)
+    {
         parent::__construct($tagBag);
 
         $this->twigTagFactory = $twigTagFactory;
         $this->cartContext = $cartContext;
-        $this->itemCodeResolver = $itemCodeResolver;
     }
 
     public static function getSubscribedEvents(): array
@@ -62,6 +46,9 @@ final class CartUpdatedSubscriber extends TagSubscriber
         ];
     }
 
+    /**
+     * @throws \Twig\Error\Error
+     */
     public function addScript(): void
     {
         $cart = $this->cartContext->getCart();

@@ -30,7 +30,6 @@
             <argument type="service" id="session.tag_bag"/>
             <argument type="service" id="setono.tag_bag.factory.twig_tag"/>
             <argument type="service" id="sylius.context.cart.composite"/>
-            <argument type="service" id="setono_sylius_addwish.resolver.item_code"/>
             <tag name="kernel.event_subscriber"/>
         </service>
 

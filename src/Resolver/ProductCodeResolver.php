@@ -19,10 +19,10 @@ final class ProductCodeResolver implements ProductCodeResolverInterface
     public function resolve(ProductInterface $product): string
     {
         if ($this->variantBased) {
-            /** @var ProductVariantInterface|null $variant */
+            /** @var ProductVariantInterface|bool $variant */
             $variant = $product->getVariants()->first();
 
-            if (null === $variant) {
+            if (false === $variant) {
                 return '';
             }
 

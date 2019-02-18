@@ -47,6 +47,11 @@ final class AddLibrarySubscriber extends TagSubscriber
         ];
     }
 
+    /**
+     * @param FilterResponseEvent $event
+     *
+     * @throws \Twig\Error\Error
+     */
     public function addLibrary(FilterResponseEvent $event): void
     {
         if (!$event->isMasterRequest()) {

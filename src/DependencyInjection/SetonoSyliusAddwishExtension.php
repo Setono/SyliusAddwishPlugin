@@ -13,6 +13,8 @@ final class SetonoSyliusAddwishExtension extends Extension
 {
     /**
      * {@inheritdoc}
+     *
+     * @throws \Exception
      */
     public function load(array $config, ContainerBuilder $container): void
     {

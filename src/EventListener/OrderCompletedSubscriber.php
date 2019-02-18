@@ -33,6 +33,11 @@ final class OrderCompletedSubscriber extends TagSubscriber
         ];
     }
 
+    /**
+     * @param GenericEvent $event
+     *
+     * @throws \Twig\Error\Error
+     */
     public function addScript(GenericEvent $event): void
     {
         $order = $event->getSubject();

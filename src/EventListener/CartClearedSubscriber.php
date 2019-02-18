@@ -24,10 +24,6 @@ final class CartClearedSubscriber extends TagSubscriber
      */
     private $cartContext;
 
-    /**
-     * @param TagBagInterface $tagBag
-     * @param TwigTagFactory $twigTagFactory
-     */
     public function __construct(
         TagBagInterface $tagBag,
         TwigTagFactory $twigTagFactory,
@@ -56,6 +52,9 @@ final class CartClearedSubscriber extends TagSubscriber
         ];
     }
 
+    /**
+     * @throws \Twig\Error\Error
+     */
     public function addScriptWhenCartEmpty(): void
     {
         $cart = $this->cartContext->getCart();
@@ -75,6 +74,11 @@ final class CartClearedSubscriber extends TagSubscriber
         $this->tagBag->add($tag, TagBagInterface::SECTION_BODY_BEGIN);
     }
 
+    /**
+     * @param ResourceControllerEvent $event
+     *
+     * @throws \Twig\Error\Error
+     */
     public function addScriptWhenCartRemoved(ResourceControllerEvent $event): void
     {
         $cart = $event->getSubject();
