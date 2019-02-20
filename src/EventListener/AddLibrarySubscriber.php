@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAddwishPlugin\EventListener;
 
-use Setono\TagBagBundle\Factory\TwigTagFactory;
-use Setono\TagBagBundle\HttpFoundation\Session\Tag\TagBagInterface;
 use Setono\TagBagBundle\Tag\TagInterface;
+use Setono\TagBagBundle\Tag\TwigTag;
+use Setono\TagBagBundle\TagBag\TagBagInterface;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
@@ -18,23 +18,15 @@ final class AddLibrarySubscriber extends TagSubscriber
     private $partnerId;
 
     /**
-     * @var TwigTagFactory
-     */
-    private $twigTagFactory;
-
-    /**
      * @param TagBagInterface $tagBag
-     * @param TwigTagFactory $twigTagFactory
      * @param string $partnerId
      */
     public function __construct(
         TagBagInterface $tagBag,
-        TwigTagFactory $twigTagFactory,
         string $partnerId
     ) {
         parent::__construct($tagBag);
 
-        $this->twigTagFactory = $twigTagFactory;
         $this->partnerId = $partnerId;
     }
 
@@ -49,8 +41,6 @@ final class AddLibrarySubscriber extends TagSubscriber
 
     /**
      * @param FilterResponseEvent $event
-     *
-     * @throws \Twig\Error\Error
      */
     public function addLibrary(FilterResponseEvent $event): void
     {
@@ -69,10 +59,8 @@ final class AddLibrarySubscriber extends TagSubscriber
             return;
         }
 
-        $tag = $this->twigTagFactory->create('@SetonoSyliusAddwishPlugin/Tag/library.js.twig', TagInterface::TYPE_SCRIPT, [
+        $this->tagBag->add(new TwigTag('@SetonoSyliusAddwishPlugin/Tag/library.js.twig', TagInterface::TYPE_SCRIPT, [
             'partner_id' => $this->partnerId,
-        ]);
-
-        $this->tagBag->addScript($tag, TagBagInterface::SECTION_BODY_BEGIN);
+        ]), TagBagInterface::SECTION_BODY_BEGIN);
     }
 }
