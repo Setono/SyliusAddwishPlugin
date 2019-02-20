@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAddwishPlugin\EventListener;
 
+use Setono\SyliusAddwishPlugin\Tag\Tags;
 use Setono\TagBagBundle\Tag\TagInterface;
 use Setono\TagBagBundle\Tag\TwigTag;
 use Setono\TagBagBundle\TagBag\TagBagInterface;
@@ -56,8 +57,11 @@ final class CartUpdatedSubscriber extends TagSubscriber
             return;
         }
 
-        $this->tagBag->add(new TwigTag('@SetonoSyliusAddwishPlugin/Tag/cart_updated.js.twig', TagInterface::TYPE_SCRIPT, [
-            'cart' => $cart,
-        ]), TagBagInterface::SECTION_BODY_BEGIN);
+        $this->tagBag->add(new TwigTag(
+            '@SetonoSyliusAddwishPlugin/Tag/cart_updated.js.twig',
+            TagInterface::TYPE_SCRIPT,
+            Tags::TAG_CART_UPDATED,
+            ['cart' => $cart]
+        ), TagBagInterface::SECTION_BODY_END);
     }
 }

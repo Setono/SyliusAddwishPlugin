@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAddwishPlugin\EventListener;
 
+use Setono\SyliusAddwishPlugin\Tag\Tags;
 use Setono\TagBagBundle\Tag\TagInterface;
 use Setono\TagBagBundle\Tag\TwigTag;
 use Setono\TagBagBundle\TagBag\TagBagInterface;
@@ -23,8 +24,6 @@ final class ProductVisitedSubscriber extends TagSubscriber
 
     /**
      * @param ResourceControllerEvent $event
-     *
-     * @throws \Twig\Error\Error
      */
     public function addScript(ResourceControllerEvent $event): void
     {
@@ -34,8 +33,11 @@ final class ProductVisitedSubscriber extends TagSubscriber
             return;
         }
 
-        $this->tagBag->add(new TwigTag('@SetonoSyliusAddwishPlugin/Tag/product_visited.html.twig', TagInterface::TYPE_HTML, [
-            'product' => $product,
-        ]), TagBagInterface::SECTION_BODY_BEGIN);
+        $this->tagBag->add(new TwigTag(
+            '@SetonoSyliusAddwishPlugin/Tag/product_visited.html.twig',
+            TagInterface::TYPE_HTML,
+            Tags::TAG_PRODUCT_VISITED,
+            ['product' => $product]
+        ), TagBagInterface::SECTION_BODY_END);
     }
 }

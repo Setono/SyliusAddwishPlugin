@@ -4,39 +4,34 @@
     <services>
         <service id="setono_sylius_addwish.event_listener.add_library"
                  class="Setono\SyliusAddwishPlugin\EventListener\AddLibrarySubscriber">
-            <argument type="service" id="session.tag_bag"/>
-            <argument type="service" id="setono.tag_bag.factory.twig_tag"/>
+            <argument type="service" id="setono_tag_bag.tag_bag"/>
             <argument>%setono_sylius_addwish.partner_id%</argument>
             <tag name="kernel.event_subscriber"/>
         </service>
 
         <service id="setono_sylius_addwish.event_listener.product_visited"
                  class="Setono\SyliusAddwishPlugin\EventListener\ProductVisitedSubscriber">
-            <argument type="service" id="session.tag_bag"/>
-            <argument type="service" id="setono.tag_bag.factory.twig_tag"/>
+            <argument type="service" id="setono_tag_bag.tag_bag"/>
             <tag name="kernel.event_subscriber"/>
         </service>
 
         <service id="setono_sylius_addwish.event_listener.cart_cleared"
                  class="Setono\SyliusAddwishPlugin\EventListener\CartClearedSubscriber">
-            <argument type="service" id="session.tag_bag"/>
-            <argument type="service" id="setono.tag_bag.factory.twig_tag"/>
+            <argument type="service" id="setono_tag_bag.tag_bag"/>
             <argument type="service" id="sylius.context.cart.composite"/>
             <tag name="kernel.event_subscriber"/>
         </service>
 
         <service id="setono_sylius_addwish.event_listener.cart_updated"
                  class="Setono\SyliusAddwishPlugin\EventListener\CartUpdatedSubscriber">
-            <argument type="service" id="session.tag_bag"/>
-            <argument type="service" id="setono.tag_bag.factory.twig_tag"/>
+            <argument type="service" id="setono_tag_bag.tag_bag"/>
             <argument type="service" id="sylius.context.cart.composite"/>
             <tag name="kernel.event_subscriber"/>
         </service>
 
         <service id="setono_sylius_addwish.event_listener.order_completed"
                  class="Setono\SyliusAddwishPlugin\EventListener\OrderCompletedSubscriber">
-            <argument type="service" id="session.tag_bag"/>
-            <argument type="service" id="setono.tag_bag.factory.twig_tag"/>
+            <argument type="service" id="setono_tag_bag.tag_bag"/>
             <tag name="kernel.event_subscriber"/>
         </service>
     </services>

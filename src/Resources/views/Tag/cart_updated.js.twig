@@ -1,7 +1,6 @@
 {# @see https://business.addwish.com/docs/#tracking-a-complete-cart #}
 {# @var \Sylius\Component\Core\Model\OrderInterface cart #}
 
-_awev=(window._awev||[]);
 _awev.push(["bind_once", "crawl_completed", function() {
     ADDWISH_PARTNER_NS.api.cart.setCart({
         total: '{{ cart.itemsTotal|setono_sylius_addwish_format_money }}',

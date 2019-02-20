@@ -1,7 +1,6 @@
 {# @see https://business.addwish.com/docs/#tracking-conversions #}
 {# @var \Sylius\Component\Core\Model\OrderInterface order #}
 
-_awev=(window._awev||[]);
 _awev.push(["bind_once", "crawl_completed", function() {
     ADDWISH_PARTNER_NS.api.conversion.track_sale({
         total: '{{ order.total|setono_sylius_addwish_format_money }}',
