@@ -36,8 +36,6 @@ final class CartClearedSubscriber extends TagSubscriber
             'sylius.order.post_update' => [
                 'addScriptWhenCartEmpty',
             ],
-
-            // Before sylius_shop_cart_clear
             'sylius.order.post_delete' => [
                 'addScriptWhenCartRemoved',
             ],
