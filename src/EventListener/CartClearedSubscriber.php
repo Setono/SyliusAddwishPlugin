@@ -59,7 +59,7 @@ final class CartClearedSubscriber extends TagSubscriber
             TagInterface::TYPE_SCRIPT,
             Tags::TAG_CART_CLEARED,
             ['cart' => $cart]
-        ), TagBagInterface::SECTION_BODY_BEGIN);
+        ), TagBagInterface::SECTION_BODY_END);
     }
 
     /**
