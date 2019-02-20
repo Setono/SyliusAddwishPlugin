@@ -9,7 +9,7 @@
 
         "sylius/sylius": "^1.4.0",
         "symfony/event-dispatcher": "^3.4|^4.1",
-        "setono/tag-bag-bundle": "^0.3.0"
+        "setono/tag-bag-bundle": "^0.4.0"
     },
     "require-dev": {
         "phpspec/phpspec": "^5.0",
