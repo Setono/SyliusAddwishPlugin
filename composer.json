@@ -7,7 +7,7 @@
     "require": {
         "php": "^7.2",
 
-        "sylius/sylius": "~1.3",
+        "sylius/sylius": "^1.3.0",
         "symfony/event-dispatcher": "^3.4|^4.1",
         "setono/tag-bag-bundle": "^0.4.0"
     },
