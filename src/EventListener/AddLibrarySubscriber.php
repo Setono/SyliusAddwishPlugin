@@ -59,6 +59,6 @@ final class AddLibrarySubscriber extends TagSubscriber
             TagInterface::TYPE_HTML,
             Tags::TAG_LIBRARY,
             ['partner_id' => $this->partnerId]
-        ), TagBagInterface::SECTION_BODY_END);
+        ), TagBagInterface::SECTION_HEAD);
     }
 }
