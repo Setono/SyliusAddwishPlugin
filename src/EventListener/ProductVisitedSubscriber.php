@@ -12,19 +12,23 @@ use Sylius\Bundle\ResourceBundle\Event\ResourceControllerEvent;
 use Sylius\Component\Product\Model\ProductInterface;
 use Symfony\Bundle\SecurityBundle\Security\FirewallConfig;
 use Symfony\Bundle\SecurityBundle\Security\FirewallMap;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Http\FirewallMapInterface;
 
 final class ProductVisitedSubscriber extends TagSubscriber
 {
-    /** @var RequestStack */
+    /** @var RequestStack|null */
     private $requestStack;
 
-    /** @var FirewallMapInterface */
+    /** @var FirewallMapInterface|null */
     private $firewallMap;
 
-    public function __construct(TagBagInterface $tagBag, RequestStack $requestStack, FirewallMapInterface $firewallMap)
-    {
+    public function __construct(
+        TagBagInterface $tagBag,
+        RequestStack $requestStack = null, // todo should not be nullable in v2
+        FirewallMapInterface $firewallMap = null // todo should not be nullable in v2
+    ) {
         parent::__construct($tagBag);
 
         $this->requestStack = $requestStack;
@@ -42,12 +46,16 @@ final class ProductVisitedSubscriber extends TagSubscriber
 
     public function addScript(ResourceControllerEvent $event): void
     {
+        if (null === $this->requestStack || null === $this->firewallMap) {
+            return;
+        }
+
         $product = $event->getSubject();
         if (!$product instanceof ProductInterface) {
             return;
         }
 
-        $config = $this->getFirewallConfig();
+        $config = $this->getFirewallConfig($this->requestStack->getCurrentRequest());
         if (null === $config) {
             return;
         }
@@ -65,13 +73,12 @@ final class ProductVisitedSubscriber extends TagSubscriber
         ), TagBagInterface::SECTION_BODY_END);
     }
 
-    private function getFirewallConfig(): ?FirewallConfig
+    private function getFirewallConfig(?Request $request): ?FirewallConfig
     {
         if (!$this->firewallMap instanceof FirewallMap) {
             return null;
         }
 
-        $request = $this->requestStack->getCurrentRequest();
         if (null === $request) {
             return null;
         }
