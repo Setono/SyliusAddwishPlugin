@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAddwishPlugin\Twig;
 
+use Safe\Exceptions\StringsException;
+use function Safe\sprintf;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
@@ -16,6 +18,9 @@ final class FormatMoneyExtension extends AbstractExtension
         ];
     }
 
+    /**
+     * @throws StringsException
+     */
     public function formatMoney(int $money): string
     {
         return sprintf('%01.2F', $money / 100);

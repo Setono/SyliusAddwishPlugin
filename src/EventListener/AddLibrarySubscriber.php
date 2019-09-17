@@ -9,20 +9,14 @@ use Setono\TagBagBundle\Tag\ScriptTag;
 use Setono\TagBagBundle\Tag\TagInterface;
 use Setono\TagBagBundle\Tag\TwigTag;
 use Setono\TagBagBundle\TagBag\TagBagInterface;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 final class AddLibrarySubscriber extends TagSubscriber
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $partnerId;
 
-    /**
-     * @param TagBagInterface $tagBag
-     * @param string $partnerId
-     */
     public function __construct(
         TagBagInterface $tagBag,
         string $partnerId
@@ -41,7 +35,7 @@ final class AddLibrarySubscriber extends TagSubscriber
         ];
     }
 
-    public function addLibrary(GetResponseEvent $event): void
+    public function addLibrary(RequestEvent $event): void
     {
         if (!$event->isMasterRequest()) {
             return;

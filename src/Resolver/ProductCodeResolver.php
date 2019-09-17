@@ -9,6 +9,7 @@ use Sylius\Component\Core\Model\ProductVariantInterface;
 
 final class ProductCodeResolver implements ProductCodeResolverInterface
 {
+    /** @var bool */
     private $variantBased;
 
     public function __construct(bool $variantBased)

@@ -22,9 +22,6 @@ final class OrderCompletedSubscriber extends TagSubscriber
         ];
     }
 
-    /**
-     * @param GenericEvent $event
-     */
     public function addScript(GenericEvent $event): void
     {
         $order = $event->getSubject();

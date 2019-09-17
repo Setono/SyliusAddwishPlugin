@@ -15,9 +15,7 @@ use Sylius\Component\Order\Model\OrderInterface as BaseOrderInterface;
 
 final class CartClearedSubscriber extends TagSubscriber
 {
-    /**
-     * @var CartContextInterface
-     */
+    /** @var CartContextInterface */
     private $cartContext;
 
     public function __construct(TagBagInterface $tagBag, CartContextInterface $cartContext)
@@ -62,9 +60,6 @@ final class CartClearedSubscriber extends TagSubscriber
         ), TagBagInterface::SECTION_BODY_END);
     }
 
-    /**
-     * @param ResourceControllerEvent $event
-     */
     public function addScriptWhenCartRemoved(ResourceControllerEvent $event): void
     {
         $cart = $event->getSubject();
