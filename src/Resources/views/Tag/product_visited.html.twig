@@ -12,16 +12,18 @@
 
 {% set variant = product|sylius_resolve_variant %}
 
-<span class="addwish-product-info" style="display:none"
-      data-title="{{ product.name }}"
-      data-imgurl="{{ absolute_url(imgurl) }}"
-      data-price="{{ variant|sylius_calculate_price({'channel': sylius.channel})|setono_sylius_addwish_format_money }}"
-      data-productnumber="{{ product|setono_sylius_addwish_product_code }}"
-      data-url="{{ absolute_url(path('sylius_shop_product_show', {'slug': product.slug })) }}"
-      data-currency="{{ sylius.channel.baseCurrency.code }}"
-      {#data-brand="..."#}
-      {#data-category="..."#}
-      data-instock="true"
-      {#data-previousprice="..."#}
-      {#data-gender="..."#}
-></span>
+{% if variant is not null %}
+    <span class="addwish-product-info" style="display:none"
+          data-title="{{ product.name }}"
+          data-imgurl="{{ absolute_url(imgurl) }}"
+          data-price="{{ variant|sylius_calculate_price({'channel': sylius.channel})|setono_sylius_addwish_format_money }}"
+          data-productnumber="{{ product|setono_sylius_addwish_product_code }}"
+          data-url="{{ absolute_url(path('sylius_shop_product_show', {'slug': product.slug })) }}"
+          data-currency="{{ sylius.channel.baseCurrency.code }}"
+          {#data-brand="..."#}
+          {#data-category="..."#}
+          data-instock="true"
+          {#data-previousprice="..."#}
+          {#data-gender="..."#}
+    ></span>
+{% endif %}
