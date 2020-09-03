@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAddwishPlugin\EventListener;
 
-use Setono\TagBagBundle\TagBag\TagBagInterface;
+use Setono\TagBag\TagBagInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 abstract class TagSubscriber implements EventSubscriberInterface

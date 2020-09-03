@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAddwishPlugin\EventListener;
 
-use Setono\SyliusAddwishPlugin\Tag\Tags;
-use Setono\TagBagBundle\Tag\TagInterface;
-use Setono\TagBagBundle\Tag\TwigTag;
-use Setono\TagBagBundle\TagBag\TagBagInterface;
+use Setono\TagBag\Tag\TagInterface;
+use Setono\TagBag\Tag\TwigTag;
+use Setono\TagBag\TagBagInterface;
 use Sylius\Bundle\ResourceBundle\Event\ResourceControllerEvent;
 use Sylius\Component\Product\Model\ProductInterface;
 use Symfony\Bundle\SecurityBundle\Security\FirewallConfig;
@@ -65,12 +64,12 @@ final class ProductVisitedSubscriber extends TagSubscriber
             return;
         }
 
-        $this->tagBag->add(new TwigTag(
+        $twigTag = new TwigTag(
             '@SetonoSyliusAddwishPlugin/Tag/product_visited.html.twig',
-            TagInterface::TYPE_HTML,
-            Tags::TAG_PRODUCT_VISITED,
             ['product' => $product]
-        ), TagBagInterface::SECTION_BODY_END);
+        );
+        $twigTag->setSection(TagInterface::SECTION_BODY_END);
+        $this->tagBag->addTag($twigTag);
     }
 
     private function getFirewallConfig(?Request $request): ?FirewallConfig

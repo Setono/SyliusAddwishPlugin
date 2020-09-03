@@ -1,0 +1,8 @@
+<script>
+    {# @see https://business.addwish.com/docs/#clearing-a-cart #}
+    {# @var \Sylius\Component\Core\Model\OrderInterface cart #}
+
+    _awev.push(["bind_once", "crawl_completed", function() {
+        ADDWISH_PARTNER_NS.api.cart.clearCart();
+    }]);
+</script>

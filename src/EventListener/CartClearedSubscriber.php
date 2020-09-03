@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAddwishPlugin\EventListener;
 
-use Setono\SyliusAddwishPlugin\Tag\Tags;
-use Setono\TagBagBundle\Tag\TagInterface;
-use Setono\TagBagBundle\Tag\TwigTag;
-use Setono\TagBagBundle\TagBag\TagBagInterface;
+use Setono\TagBag\Tag\TagInterface;
+use Setono\TagBag\Tag\TwigTag;
+use Setono\TagBag\TagBagInterface;
 use Sylius\Bundle\ResourceBundle\Event\ResourceControllerEvent;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Order\Context\CartContextInterface;
@@ -52,12 +51,12 @@ final class CartClearedSubscriber extends TagSubscriber
             return;
         }
 
-        $this->tagBag->add(new TwigTag(
-            '@SetonoSyliusAddwishPlugin/Tag/cart_cleared.js.twig',
-            TagInterface::TYPE_SCRIPT,
-            Tags::TAG_CART_CLEARED,
+        $twigTag = new TwigTag(
+            '@SetonoSyliusAddwishPlugin/Tag/cart_cleared.html.twig',
             ['cart' => $cart]
-        ), TagBagInterface::SECTION_BODY_END);
+        );
+        $twigTag->setSection(TagInterface::SECTION_BODY_END);
+        $this->tagBag->addTag($twigTag);
     }
 
     public function addScriptWhenCartRemoved(ResourceControllerEvent $event): void
@@ -71,11 +70,11 @@ final class CartClearedSubscriber extends TagSubscriber
             return;
         }
 
-        $this->tagBag->add(new TwigTag(
-            '@SetonoSyliusAddwishPlugin/Tag/cart_cleared.js.twig',
-            TagInterface::TYPE_SCRIPT,
-            Tags::TAG_CART_CLEARED,
+        $twigTag = new TwigTag(
+            '@SetonoSyliusAddwishPlugin/Tag/cart_cleared.html.twig',
             ['cart' => $cart]
-        ), TagBagInterface::SECTION_BODY_END);
+        );
+        $twigTag->setSection(TagInterface::SECTION_BODY_END);
+        $this->tagBag->addTag($twigTag);
     }
 }
