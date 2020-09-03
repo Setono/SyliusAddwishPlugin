@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAddwishPlugin\EventListener;
 
-use Setono\SyliusAddwishPlugin\Tag\Tags;
-use Setono\TagBagBundle\Tag\TagInterface;
-use Setono\TagBagBundle\Tag\TwigTag;
-use Setono\TagBagBundle\TagBag\TagBagInterface;
+use Setono\TagBag\Tag\TagInterface;
+use Setono\TagBag\Tag\TwigTag;
+use Setono\TagBag\TagBagInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Order\Context\CartContextInterface;
 use Sylius\Component\Order\Model\OrderInterface as BaseOrderInterface;
@@ -55,11 +54,11 @@ final class CartUpdatedSubscriber extends TagSubscriber
             return;
         }
 
-        $this->tagBag->add(new TwigTag(
-            '@SetonoSyliusAddwishPlugin/Tag/cart_updated.js.twig',
-            TagInterface::TYPE_SCRIPT,
-            Tags::TAG_CART_UPDATED,
+        $twigTag = new TwigTag(
+            '@SetonoSyliusAddwishPlugin/Tag/cart_updated.html.twig',
             ['cart' => $cart]
-        ), TagBagInterface::SECTION_BODY_END);
+        );
+        $twigTag->setSection(TagInterface::SECTION_BODY_BEGIN);
+        $this->tagBag->addTag($twigTag);
     }
 }
