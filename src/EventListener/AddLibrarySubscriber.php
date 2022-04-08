@@ -13,13 +13,10 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 final class AddLibrarySubscriber extends TagSubscriber
 {
-    /** @var string */
-    private $partnerId;
+    private string $partnerId;
 
-    public function __construct(
-        TagBagInterface $tagBag,
-        string $partnerId
-    ) {
+    public function __construct(TagBagInterface $tagBag, string $partnerId)
+    {
         parent::__construct($tagBag);
 
         $this->partnerId = $partnerId;

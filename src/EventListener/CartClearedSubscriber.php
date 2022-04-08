@@ -14,8 +14,7 @@ use Sylius\Component\Order\Model\OrderInterface as BaseOrderInterface;
 
 final class CartClearedSubscriber extends TagSubscriber
 {
-    /** @var CartContextInterface */
-    private $cartContext;
+    private CartContextInterface $cartContext;
 
     public function __construct(TagBagInterface $tagBag, CartContextInterface $cartContext)
     {

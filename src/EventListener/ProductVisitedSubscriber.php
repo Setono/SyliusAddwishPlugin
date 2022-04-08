@@ -17,11 +17,9 @@ use Symfony\Component\Security\Http\FirewallMapInterface;
 
 final class ProductVisitedSubscriber extends TagSubscriber
 {
-    /** @var RequestStack|null */
-    private $requestStack;
+    private ?RequestStack $requestStack;
 
-    /** @var FirewallMapInterface|null */
-    private $firewallMap;
+    private ?FirewallMapInterface $firewallMap;
 
     public function __construct(
         TagBagInterface $tagBag,

@@ -17,6 +17,7 @@ final class Configuration implements ConfigurationInterface
         /** @var ArrayNodeDefinition $rootNode */
         $rootNode = $treeBuilder->getRootNode();
 
+        /** @psalm-suppress PossiblyNullReference,PossiblyUndefinedMethod,MixedMethodCall */
         $rootNode
             ->children()
                 ->scalarNode('partner_id')
@@ -27,8 +28,6 @@ final class Configuration implements ConfigurationInterface
                 ->booleanNode('variant_based')
                     ->defaultFalse()
                     ->info('If true the various injections will inject variant codes instead of product codes.')
-                ->end()
-            ->end()
         ;
 
         return $treeBuilder;

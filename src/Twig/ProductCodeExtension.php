@@ -11,8 +11,7 @@ use Twig\TwigFilter;
 
 final class ProductCodeExtension extends AbstractExtension
 {
-    /** @var ProductCodeResolverInterface */
-    private $productCodeResolver;
+    private ProductCodeResolverInterface $productCodeResolver;
 
     public function __construct(ProductCodeResolverInterface $productCodeResolver)
     {
