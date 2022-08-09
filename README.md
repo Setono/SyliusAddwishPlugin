@@ -1,9 +1,8 @@
-# SetonoSyliusAddwishPlugin
+# Addwish / Hello Retail plugin for Sylius
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE)
 [![Build Status][ico-travis]][link-travis]
-[![Quality Score][ico-code-quality]][link-code-quality]
 
 Plugin integrates Addwish tracking to Sylius 
 via `setono/sylius-tag-bag-plugin` 
@@ -69,8 +68,6 @@ Run `composer all` before pushing changes to repo / making PR.
 [ico-version]: https://img.shields.io/packagist/v/setono/sylius-addwish-plugin.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-travis]: https://travis-ci.com/Setono/SyliusAddwishPlugin.svg?branch=master
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/Setono/SyliusAddwishPlugin.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/setono/sylius-addwish-plugin
 [link-travis]: https://travis-ci.com/Setono/SyliusAddwishPlugin
-[link-code-quality]: https://scrutinizer-ci.com/g/Setono/SyliusAddwishPlugin
