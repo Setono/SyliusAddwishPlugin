@@ -39,12 +39,12 @@
         }
     },
     "autoload-dev": {
-        "classmap": [
-            "tests/Application/Kernel.php"
-        ],
         "psr-4": {
             "Tests\\Setono\\SyliusAddwishPlugin\\": "tests/"
-        }
+        },
+        "classmap": [
+            "tests/Application/Kernel.php"
+        ]
     },
     "config": {
         "allow-plugins": {
