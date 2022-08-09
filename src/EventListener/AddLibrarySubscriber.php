@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Setono\SyliusAddwishPlugin\EventListener;
 
-use Setono\TagBag\Tag\ScriptTag;
+use Setono\TagBag\Tag\InlineScriptTag;
 use Setono\TagBag\Tag\TagInterface;
-use Setono\TagBag\Tag\TwigTag;
+use Setono\TagBag\Tag\TemplateTag;
 use Setono\TagBag\TagBagInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -42,15 +42,13 @@ final class AddLibrarySubscriber extends TagSubscriber
             return;
         }
 
-        $scriptTag = new ScriptTag('var _awev=window._awev||[];');
-        $scriptTag->setSection(TagInterface::SECTION_HEAD);
-        $this->tagBag->addTag($scriptTag);
+        $this->tagBag->add(InlineScriptTag::create(
+            'var _awev=window._awev||[];'
+        )->withSection(TagInterface::SECTION_HEAD));
 
-        $twigTag = new TwigTag(
+        $this->tagBag->add(TemplateTag::create(
             '@SetonoSyliusAddwishPlugin/Tag/library.html.twig',
             ['partner_id' => $this->partnerId]
-        );
-        $twigTag->setSection(TagInterface::SECTION_HEAD);
-        $this->tagBag->addTag($twigTag);
+        )->withSection(TagInterface::SECTION_HEAD));
     }
 }

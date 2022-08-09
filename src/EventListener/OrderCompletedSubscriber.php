@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Setono\SyliusAddwishPlugin\EventListener;
 
 use Setono\TagBag\Tag\TagInterface;
-use Setono\TagBag\Tag\TwigTag;
+use Setono\TagBag\Tag\TemplateTag;
 use Sylius\Component\Core\Model\OrderInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 
@@ -30,11 +30,10 @@ final class OrderCompletedSubscriber extends TagSubscriber
 
         // As an alternative, we can use order_completed_js.html.twig, but
         // it looks like less detailed
-        $twigTag = new TwigTag(
+        $twigTag = TemplateTag::create(
             '@SetonoSyliusAddwishPlugin/Tag/order_completed.html.twig',
             ['order' => $order]
-        );
-        $twigTag->setSection(TagInterface::SECTION_BODY_END);
-        $this->tagBag->addTag($twigTag);
+        )->withSection(TagInterface::SECTION_BODY_END);
+        $this->tagBag->add($twigTag);
     }
 }

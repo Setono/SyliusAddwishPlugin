@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Setono\SyliusAddwishPlugin\EventListener;
 
 use Setono\TagBag\Tag\TagInterface;
-use Setono\TagBag\Tag\TwigTag;
+use Setono\TagBag\Tag\TemplateTag;
 use Setono\TagBag\TagBagInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Order\Context\CartContextInterface;
@@ -53,11 +53,10 @@ final class CartUpdatedSubscriber extends TagSubscriber
             return;
         }
 
-        $twigTag = new TwigTag(
+        $twigTag = TemplateTag::create(
             '@SetonoSyliusAddwishPlugin/Tag/cart_updated.html.twig',
             ['cart' => $cart]
-        );
-        $twigTag->setSection(TagInterface::SECTION_BODY_BEGIN);
-        $this->tagBag->addTag($twigTag);
+        )->withSection(TagInterface::SECTION_BODY_BEGIN);
+        $this->tagBag->add($twigTag);
     }
 }

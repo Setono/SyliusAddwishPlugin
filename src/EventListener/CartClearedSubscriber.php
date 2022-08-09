@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Setono\SyliusAddwishPlugin\EventListener;
 
 use Setono\TagBag\Tag\TagInterface;
-use Setono\TagBag\Tag\TwigTag;
+use Setono\TagBag\Tag\TemplateTag;
 use Setono\TagBag\TagBagInterface;
 use Sylius\Bundle\ResourceBundle\Event\ResourceControllerEvent;
 use Sylius\Component\Core\Model\OrderInterface;
@@ -50,12 +50,11 @@ final class CartClearedSubscriber extends TagSubscriber
             return;
         }
 
-        $twigTag = new TwigTag(
+        $twigTag = TemplateTag::create(
             '@SetonoSyliusAddwishPlugin/Tag/cart_cleared.html.twig',
             ['cart' => $cart]
-        );
-        $twigTag->setSection(TagInterface::SECTION_BODY_END);
-        $this->tagBag->addTag($twigTag);
+        )->withSection(TagInterface::SECTION_BODY_END);
+        $this->tagBag->add($twigTag);
     }
 
     public function addScriptWhenCartRemoved(ResourceControllerEvent $event): void
@@ -69,11 +68,10 @@ final class CartClearedSubscriber extends TagSubscriber
             return;
         }
 
-        $twigTag = new TwigTag(
+        $twigTag = TemplateTag::create(
             '@SetonoSyliusAddwishPlugin/Tag/cart_cleared.html.twig',
             ['cart' => $cart]
-        );
-        $twigTag->setSection(TagInterface::SECTION_BODY_END);
-        $this->tagBag->addTag($twigTag);
+        )->withSection(TagInterface::SECTION_BODY_END);
+        $this->tagBag->add($twigTag);
     }
 }

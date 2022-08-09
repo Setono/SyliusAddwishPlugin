@@ -2,8 +2,6 @@ name: build
 on:
     push: ~
     pull_request: ~
-    schedule:
-        - cron: 5 8 * * 3
 env:
     APP_ENV: test
     DATABASE_URL: "mysql://root:root@127.0.0.1/sylius?serverVersion=5.7"
