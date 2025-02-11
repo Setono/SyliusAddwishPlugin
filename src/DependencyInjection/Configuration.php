@@ -17,7 +17,7 @@ final class Configuration implements ConfigurationInterface
         /** @var ArrayNodeDefinition $rootNode */
         $rootNode = $treeBuilder->getRootNode();
 
-        /** @psalm-suppress PossiblyNullReference,PossiblyUndefinedMethod,MixedMethodCall */
+        /** @psalm-suppress PossiblyNullReference,PossiblyUndefinedMethod,MixedMethodCall,UndefinedInterfaceMethod */
         $rootNode
             ->children()
                 ->scalarNode('partner_id')
